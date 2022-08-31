@@ -1,0 +1,97 @@
+# Default values for ng-custom-dashboards
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+global:
+  loadbalancerURL: ""
+  airgap: "false"
+replicaCount: 1
+maxSurge: 1
+maxUnavailable: 0
+
+image:
+  registry: docker.io
+  repository: harness/dashboard-service-signed
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v1.52.14"
+  digest: ""
+
+lookerSecrets:
+  clientId:
+    name: harness-secrets
+    key: LOOKERSDK_CLIENT_ID
+  clientSecret:
+    name: harness-secrets
+    key: LOOKERSDK_CLIENT_SECRET
+  secret:
+    name: harness-secrets
+    key: SECRET
+
+authSecrets:
+  acl:
+    name: harness-secrets
+    key: AUTH_ACCESS_CONTROL_SECRET
+  ccm:
+    name: harness-secrets
+    key: AUTH_CCM_SECRET
+  cgManager:
+    name: harness-secrets
+    key: AUTH_CG_MANAGER_SECRET
+  ngManager:
+    name: harness-secrets
+    key: AUTH_NG_MANAGER_SECRET
+  identityService:
+    name: harness-secrets
+    key: AUTH_IDENTITY_SERVICE_SECRET
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "harness-default"
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext:
+  runAsUser: 65534
+  runAsNonRoot: true
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 5000
+
+resources:
+  limits:
+    cpu: 1
+    memory: 1536Mi
+  requests:
+    cpu: 1
+    memory: 768Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
