@@ -1,5 +1,8 @@
 #Helm chart for ng-custom-dashboards
 
+### Configuration options
+For Chart configuration see the [README.md](src/ng-custom-dashboards/README.md) from the Chart.
+
 ### Publishing the Chart
 Bump version of the Chart in `src/ng-custom-dashboards/Chart.yaml`
 ```shell

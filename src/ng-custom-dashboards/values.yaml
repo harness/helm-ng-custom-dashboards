@@ -16,6 +16,28 @@ image:
   tag: "v1.52.14"
   digest: ""
 
+config:
+  # -- hostname of your looker install
+  lookerHost: harness-looker
+  # -- folder ID of the 'CUSTOMER' folder in looker
+  customerFolderId: '6'
+  # -- folder ID of the 'OOTB' folder in looker
+  ootbFolderId: '7'
+  # -- hostname of your redis install
+  redisHost: harness-redis-master
+  # -- port of your redis install
+  redisPort: '6379'
+  # -- if you have configured models with a prefix enter it here
+  modelPrefix: ''
+  # -- looker sdk param
+  lookerApiVersion: '4.0'
+  # -- looker sdk param
+  lookerTimeout: '120'
+  # -- looker sdk param
+  lookerVerifySsl: 'false'
+  # -- deprecated
+  env: ''
+
 lookerSecrets:
   clientId:
     name: harness-secrets

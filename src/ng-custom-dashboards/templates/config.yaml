@@ -8,14 +8,14 @@ metadata:
 data:
   AUTH_CLIENT_ID: CustomDashboards
   BASE_URL: '{{ .Values.global.loadbalancerURL }}'
-  HOST: dashboards.harness.io
-  LOOKERSDK_API_VERSION: '4.0'
-  LOOKERSDK_TIMEOUT: '120'
-  LOOKERSDK_VERIFY_SSL: 'false'
-  LOOKERSDK_BASE_URL: https://dashboards.harness.io:443
-  REDIS_HOST: harness-redis-master
-  REDIS_PORT: '6379'
-  OOTB_FOLDER_ID: '53'
-  CUSTOMER_FOLDER_ID: '48'
-  MODEL_PREFIX: ''
-  ENV: 'QA'
+  HOST: '{{ .Values.config.lookerHost }}'
+  LOOKERSDK_API_VERSION: '{{ .Values.config.lookerApiVersion }}'
+  LOOKERSDK_TIMEOUT: '{{ .Values.config.lookerTimeout }}'
+  LOOKERSDK_VERIFY_SSL: '{{ .Values.config.lookerVerifySsl }}'
+  LOOKERSDK_BASE_URL: '{{ printf "https://%s:443" .Values.lookerHost }}'
+  REDIS_HOST: '{{ .Values.config.redisHost }}'
+  REDIS_PORT: '{{ .Values.config.redisPort }}'
+  OOTB_FOLDER_ID: '{{ .Values.config.ootbFolderId }}'
+  CUSTOMER_FOLDER_ID: '{{ .Values.config.customerFolderId }}'
+  MODEL_PREFIX: '{{ .Values.config.modelPrefix }}'
+  ENV: '{{ .Values.config.env }}'

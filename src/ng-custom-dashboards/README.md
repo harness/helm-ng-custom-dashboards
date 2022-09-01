@@ -30,6 +30,16 @@ A Helm chart for Kubernetes
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| config.customerFolderId | string | `"6"` | folder ID of the 'CUSTOMER' folder in looker |
+| config.env | string | `""` | deprecated |
+| config.lookerApiVersion | string | `"4.0"` | looker sdk param |
+| config.lookerHost | string | `"harness-looker"` | hostname of your looker install |
+| config.lookerTimeout | string | `"120"` | looker sdk param |
+| config.lookerVerifySsl | string | `"false"` | looker sdk param |
+| config.modelPrefix | string | `""` | if you have configured models with a prefix enter it here |
+| config.ootbFolderId | string | `"7"` | folder ID of the 'OOTB' folder in looker |
+| config.redisHost | string | `"harness-redis-master"` | hostname of your redis install |
+| config.redisPort | string | `"6379"` | port of your redis install |
 | fullnameOverride | string | `""` |  |
 | global.airgap | string | `"false"` |  |
 | global.loadbalancerURL | string | `""` |  |
@@ -63,4 +73,3 @@ A Helm chart for Kubernetes
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `"harness-default"` |  |
 | tolerations | list | `[]` |  |
-
