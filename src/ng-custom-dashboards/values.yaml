@@ -13,20 +13,24 @@ image:
   repository: harness/dashboard-service-signed
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.52.14"
+  tag: "v1.52.12-afe14ef"
   digest: ""
 
 config:
+  # -- scheme used for your looker install, http or https
+  lookerScheme: http
   # -- hostname of your looker install
-  lookerHost: harness-looker
+  lookerHost: ''
+  # -- port of your looker install
+  lookerPort: ''
   # -- folder ID of the 'CUSTOMER' folder in looker
-  customerFolderId: '6'
+  customerFolderId: ''
   # -- folder ID of the 'OOTB' folder in looker
-  ootbFolderId: '7'
+  ootbFolderId: ''
   # -- hostname of your redis install
-  redisHost: harness-redis-master
+  redisHost: ''
   # -- port of your redis install
-  redisPort: '6379'
+  redisPort: ''
   # -- if you have configured models with a prefix enter it here
   modelPrefix: ''
   # -- looker sdk param
@@ -68,6 +72,14 @@ authSecrets:
 
 nameOverride: ""
 fullnameOverride: ""
+
+ingress:
+  enabled: false
+  className: ""
+  hosts:
+  tls:
+    enabled: false
+    secretName:
 
 serviceAccount:
   # Specifies whether a service account should be created

@@ -1,0 +1,33 @@
+{{- if .Values.ingress.enabled -}}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: '{{ include "app.name" . }}'
+  namespace: {{ .Release.Namespace }}
+spec:
+  {{- if .Values.ingress.className -}}
+  ingressClassName: {{ .Values.ingress.className | quote }}
+  {{- end }}
+  rules:
+    - http:
+        paths:
+          - path: /dashboard
+            pathType: Prefix
+            backend:
+              service:
+                name: '{{ include "app.name" . }}'
+                port:
+                  name: http
+  {{- if .Values.ingress.tls.enabled }}
+    {{- range .Values.ingress.hosts }}
+      host: {{ . | quote }}
+    {{- end }}
+  tls:
+    - hosts:
+        {{- range .Values.ingress.hosts }}
+        - {{ . | quote }}
+        {{- end }}
+      secretName: {{ .Values.ingress.tls.secretName }}
+  {{- end }}
+{{- end }}

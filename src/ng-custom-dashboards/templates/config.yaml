@@ -12,7 +12,7 @@ data:
   LOOKERSDK_API_VERSION: '{{ .Values.config.lookerApiVersion }}'
   LOOKERSDK_TIMEOUT: '{{ .Values.config.lookerTimeout }}'
   LOOKERSDK_VERIFY_SSL: '{{ .Values.config.lookerVerifySsl }}'
-  LOOKERSDK_BASE_URL: '{{ printf "https://%s:443" .Values.lookerHost }}'
+  LOOKERSDK_BASE_URL: '{{ .Values.config.lookerScheme }}://{{ .Values.config.lookerHost }}:{{ .Values.config.lookerPort }}'
   REDIS_HOST: '{{ .Values.config.redisHost }}'
   REDIS_PORT: '{{ .Values.config.redisPort }}'
   OOTB_FOLDER_ID: '{{ .Values.config.ootbFolderId }}'
