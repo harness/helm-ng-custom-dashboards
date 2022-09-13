@@ -1,5 +1,9 @@
 #Helm chart for ng-custom-dashboards
 
+### Requirements
+To use NG Custom Dashboards you first need to install the [Looker Chart](https://github.com/harness/helm-looker).
+You will also need to update the Looker config within the values.yaml file.
+
 ### Configuration options
 For Chart configuration see the [README.md](src/ng-custom-dashboards/README.md) from the Chart.
 

@@ -31,14 +31,15 @@ A Helm chart for Kubernetes
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | config.customerFolderId | string | `"6"` | folder ID of the 'CUSTOMER' folder in looker |
-| config.env | string | `""` | deprecated |
 | config.lookerApiVersion | string | `"4.0"` | looker sdk param |
-| config.lookerHost | string | `"harness-looker"` | hostname of your looker install |
+| config.lookerHost | string | `""` | hostname of your looker install |
+| config.lookerPort | string | `"80"` | port of your looker install |
+| config.lookerScheme | string | `"https"` | scheme used for your looker install, http or https |
 | config.lookerTimeout | string | `"120"` | looker sdk param |
 | config.lookerVerifySsl | string | `"false"` | looker sdk param |
-| config.modelPrefix | string | `""` | if you have configured models with a prefix enter it here |
+| config.modelPrefix | string | `""` | if you have configured Looker models with a prefix enter it here |
 | config.ootbFolderId | string | `"7"` | folder ID of the 'OOTB' folder in looker |
-| config.redisHost | string | `"harness-redis-master"` | hostname of your redis install |
+| config.redisHost | string | `""` | hostname of your redis install |
 | config.redisPort | string | `"6379"` | port of your redis install |
 | fullnameOverride | string | `""` |  |
 | global.airgap | string | `"false"` |  |
@@ -47,7 +48,12 @@ A Helm chart for Kubernetes
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.registry | string | `"docker.io"` |  |
 | image.repository | string | `"harness/dashboard-service-signed"` |  |
-| image.tag | string | `"v1.52.14"` |  |
+| image.tag | string | `"v1.52.12-afe14ef"` |  |
+| ingress.className | string | `""` |  |
+| ingress.enabled | bool | `false` |  |
+| ingress.hosts | string | `nil` |  |
+| ingress.tls.enabled | bool | `false` |  |
+| ingress.tls.secretName | string | `nil` |  |
 | lookerSecrets.clientId.key | string | `"LOOKERSDK_CLIENT_ID"` |  |
 | lookerSecrets.clientId.name | string | `"harness-secrets"` |  |
 | lookerSecrets.clientSecret.key | string | `"LOOKERSDK_CLIENT_SECRET"` |  |
@@ -73,3 +79,4 @@ A Helm chart for Kubernetes
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `"harness-default"` |  |
 | tolerations | list | `[]` |  |
+

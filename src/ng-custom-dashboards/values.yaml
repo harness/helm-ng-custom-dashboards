@@ -18,20 +18,20 @@ image:
 
 config:
   # -- scheme used for your looker install, http or https
-  lookerScheme: http
+  lookerScheme: 'https'
   # -- hostname of your looker install
   lookerHost: ''
   # -- port of your looker install
-  lookerPort: ''
+  lookerPort: '80'
   # -- folder ID of the 'CUSTOMER' folder in looker
-  customerFolderId: ''
+  customerFolderId: '6'
   # -- folder ID of the 'OOTB' folder in looker
-  ootbFolderId: ''
+  ootbFolderId: '7'
   # -- hostname of your redis install
   redisHost: ''
   # -- port of your redis install
-  redisPort: ''
-  # -- if you have configured models with a prefix enter it here
+  redisPort: '6379'
+  # -- if you have configured Looker models with a prefix enter it here
   modelPrefix: ''
   # -- looker sdk param
   lookerApiVersion: '4.0'
@@ -39,8 +39,6 @@ config:
   lookerTimeout: '120'
   # -- looker sdk param
   lookerVerifySsl: 'false'
-  # -- deprecated
-  env: ''
 
 lookerSecrets:
   clientId:

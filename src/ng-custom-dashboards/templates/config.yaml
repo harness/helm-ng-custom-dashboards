@@ -18,4 +18,3 @@ data:
   OOTB_FOLDER_ID: '{{ .Values.config.ootbFolderId }}'
   CUSTOMER_FOLDER_ID: '{{ .Values.config.customerFolderId }}'
   MODEL_PREFIX: '{{ .Values.config.modelPrefix }}'
-  ENV: '{{ .Values.config.env }}'
