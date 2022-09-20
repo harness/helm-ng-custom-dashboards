@@ -1,4 +1,4 @@
-{{- if .Values.ingress.enabled -}}
+{{- if .Values.global.ingress.enabled -}}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -6,8 +6,8 @@ metadata:
   name: '{{ include "app.name" . }}'
   namespace: {{ .Release.Namespace }}
 spec:
-  {{- if .Values.ingress.className -}}
-  ingressClassName: {{ .Values.ingress.className | quote }}
+  {{- if .Values.global.ingress.className -}}
+  ingressClassName: {{ .Values.global.ingress.className | quote }}
   {{- end }}
   rules:
     - http:
@@ -19,15 +19,15 @@ spec:
                 name: '{{ include "app.name" . }}'
                 port:
                   name: http
-  {{- if .Values.ingress.tls.enabled }}
-    {{- range .Values.ingress.hosts }}
+  {{- if .Values.global.ingress.tls.enabled }}
+    {{- range .Values.global.ingress.hosts }}
       host: {{ . | quote }}
     {{- end }}
   tls:
     - hosts:
-        {{- range .Values.ingress.hosts }}
+        {{- range .Values.global.ingress.hosts }}
         - {{ . | quote }}
         {{- end }}
-      secretName: {{ .Values.ingress.tls.secretName }}
+      secretName: {{ .Values.global.ingress.tls.secretName }}
   {{- end }}
 {{- end }}
