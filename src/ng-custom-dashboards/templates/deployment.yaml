@@ -63,31 +63,6 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.lookerSecrets.secret.name }}
                   key: {{ .Values.lookerSecrets.secret.key }}
-            - name: AUTH_ACCESS_CONTROL_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.authSecrets.acl.name }}
-                  key: {{ .Values.authSecrets.acl.key }}
-            - name: AUTH_CCM_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.authSecrets.ccm.name }}
-                  key: {{ .Values.authSecrets.ccm.key }}
-            - name: AUTH_CG_MANAGER_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.authSecrets.cgManager.name }}
-                  key: {{ .Values.authSecrets.cgManager.key }}
-            - name: AUTH_NG_MANAGER_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.authSecrets.ngManager.name }}
-                  key: {{ .Values.authSecrets.ngManager.key }}
-            - name: AUTH_IDENTITY_SERVICE_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.authSecrets.identityService.name }}
-                  key: {{ .Values.authSecrets.identityService.key }}
           envFrom:
           - configMapRef:
               name: '{{ include "app.name" . }}'

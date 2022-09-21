@@ -45,30 +45,13 @@ config:
 lookerSecrets:
   clientId:
     name: harness-secrets
-    key: LOOKERSDK_CLIENT_ID
+    key: lookerSdkClientId
   clientSecret:
     name: harness-secrets
-    key: LOOKERSDK_CLIENT_SECRET
+    key: lookerSdkClientSecret
   secret:
     name: harness-secrets
-    key: SECRET
-
-authSecrets:
-  acl:
-    name: harness-secrets
-    key: AUTH_ACCESS_CONTROL_SECRET
-  ccm:
-    name: harness-secrets
-    key: AUTH_CCM_SECRET
-  cgManager:
-    name: harness-secrets
-    key: AUTH_CG_MANAGER_SECRET
-  ngManager:
-    name: harness-secrets
-    key: AUTH_NG_MANAGER_SECRET
-  identityService:
-    name: harness-secrets
-    key: AUTH_IDENTITY_SERVICE_SECRET
+    key: lookerEmbedSecret
 
 nameOverride: ""
 fullnameOverride: ""
