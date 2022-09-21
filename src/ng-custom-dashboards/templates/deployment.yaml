@@ -1,0 +1,130 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{ include "app.name" . }}'
+  namespace: '{{ .Release.Namespace }}'
+  labels:
+    {{- include "app.labels" . | nindent 4 }}
+spec:
+  progressDeadlineSeconds: 300
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: {{.Values.maxSurge}}
+      maxUnavailable: {{.Values.maxUnavailable}}
+  selector:
+    matchLabels:
+      {{- include "app.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "app.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "app.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: '{{ include "app.name" . }}'
+          image: {{ include "common.images.image" (dict "imageRoot" .Values.image "global" .Values.global) }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+              {{- toYaml .Values.securityContext | nindent 12 }}
+          ports:
+          - name: http
+            containerPort: {{.Values.service.port}}
+            protocol: "TCP"
+          resources:
+              {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: LOOKERSDK_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.lookerSecrets.clientId.name }}
+                  key: {{ .Values.lookerSecrets.clientId.key }}
+            - name: LOOKERSDK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.lookerSecrets.clientSecret.name }}
+                  key: {{ .Values.lookerSecrets.clientSecret.key }}
+            - name: SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.lookerSecrets.secret.name }}
+                  key: {{ .Values.lookerSecrets.secret.key }}
+            - name: AUTH_ACCESS_CONTROL_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.authSecrets.acl.name }}
+                  key: {{ .Values.authSecrets.acl.key }}
+            - name: AUTH_CCM_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.authSecrets.ccm.name }}
+                  key: {{ .Values.authSecrets.ccm.key }}
+            - name: AUTH_CG_MANAGER_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.authSecrets.cgManager.name }}
+                  key: {{ .Values.authSecrets.cgManager.key }}
+            - name: AUTH_NG_MANAGER_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.authSecrets.ngManager.name }}
+                  key: {{ .Values.authSecrets.ngManager.key }}
+            - name: AUTH_IDENTITY_SERVICE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.authSecrets.identityService.name }}
+                  key: {{ .Values.authSecrets.identityService.key }}
+          envFrom:
+          - configMapRef:
+              name: '{{ include "app.name" . }}'
+          readinessProbe:
+            httpGet:
+              path: /dashboard/health
+              port: http
+            initialDelaySeconds: 20
+            timeoutSeconds: 5
+            periodSeconds: 5
+            failureThreshold: 8
+          livenessProbe:
+            httpGet:
+              path: /dashboard/health
+              port: http
+            initialDelaySeconds: 20
+            timeoutSeconds: 5
+            periodSeconds: 10
+            failureThreshold: 20
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - '{{ include "app.name" . }}'
+            topologyKey: "kubernetes.io/hostname"
+      {{- with .Values.affinity }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

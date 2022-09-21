@@ -1,0 +1,131 @@
+# Default values for ng-custom-dashboards
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+global:
+  loadbalancerURL: ""
+  airgap: "false"
+  ingress:
+    enabled: false
+replicaCount: 1
+maxSurge: 1
+maxUnavailable: 0
+
+image:
+  registry: docker.io
+  repository: harness/dashboard-service-signed
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v1.52.12-afe14ef"
+  digest: ""
+
+config:
+  # -- scheme used for your looker install, http or https
+  lookerScheme: 'https'
+  # -- hostname of your looker install
+  lookerHost: ''
+  # -- port of your looker install
+  lookerPort: '80'
+  # -- folder ID of the 'CUSTOMER' folder in looker
+  customerFolderId: '6'
+  # -- folder ID of the 'OOTB' folder in looker
+  ootbFolderId: '7'
+  # -- hostname of your redis install
+  redisHost: ''
+  # -- port of your redis install
+  redisPort: '6379'
+  # -- if you have configured Looker models with a prefix enter it here
+  modelPrefix: ''
+  # -- looker sdk param
+  lookerApiVersion: '4.0'
+  # -- looker sdk param
+  lookerTimeout: '120'
+  # -- looker sdk param
+  lookerVerifySsl: 'false'
+
+lookerSecrets:
+  clientId:
+    name: harness-secrets
+    key: LOOKERSDK_CLIENT_ID
+  clientSecret:
+    name: harness-secrets
+    key: LOOKERSDK_CLIENT_SECRET
+  secret:
+    name: harness-secrets
+    key: SECRET
+
+authSecrets:
+  acl:
+    name: harness-secrets
+    key: AUTH_ACCESS_CONTROL_SECRET
+  ccm:
+    name: harness-secrets
+    key: AUTH_CCM_SECRET
+  cgManager:
+    name: harness-secrets
+    key: AUTH_CG_MANAGER_SECRET
+  ngManager:
+    name: harness-secrets
+    key: AUTH_NG_MANAGER_SECRET
+  identityService:
+    name: harness-secrets
+    key: AUTH_IDENTITY_SERVICE_SECRET
+
+nameOverride: ""
+fullnameOverride: ""
+
+ingress:
+  enabled: false
+  className: ""
+  hosts:
+  tls:
+    enabled: false
+    secretName:
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "harness-default"
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext:
+  runAsUser: 65534
+  runAsNonRoot: true
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 5000
+
+resources:
+  limits:
+    cpu: 1
+    memory: 1536Mi
+  requests:
+    cpu: 1
+    memory: 768Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
