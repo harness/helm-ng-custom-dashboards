@@ -1,6 +1,6 @@
 # ng-custom-dashboards
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.52.10](https://img.shields.io/badge/AppVersion-v1.52.10-informational?style=flat-square)
+![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.52.19](https://img.shields.io/badge/AppVersion-v1.52.19-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -16,16 +16,6 @@ A Helm chart for Kubernetes
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| authSecrets.acl.key | string | `"AUTH_ACCESS_CONTROL_SECRET"` |  |
-| authSecrets.acl.name | string | `"harness-secrets"` |  |
-| authSecrets.ccm.key | string | `"AUTH_CCM_SECRET"` |  |
-| authSecrets.ccm.name | string | `"harness-secrets"` |  |
-| authSecrets.cgManager.key | string | `"AUTH_CG_MANAGER_SECRET"` |  |
-| authSecrets.cgManager.name | string | `"harness-secrets"` |  |
-| authSecrets.identityService.key | string | `"AUTH_IDENTITY_SERVICE_SECRET"` |  |
-| authSecrets.identityService.name | string | `"harness-secrets"` |  |
-| authSecrets.ngManager.key | string | `"AUTH_NG_MANAGER_SECRET"` |  |
-| authSecrets.ngManager.name | string | `"harness-secrets"` |  |
 | autoscaling.enabled | bool | `true` |  |
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
@@ -41,24 +31,28 @@ A Helm chart for Kubernetes
 | config.ootbFolderId | string | `"7"` | folder ID of the 'OOTB' folder in looker |
 | config.redisHost | string | `""` | hostname of your redis install |
 | config.redisPort | string | `"6379"` | port of your redis install |
+| config.redisSentinel | string | `"false"` | used to enable Redis Sentinel support |
+| config.redisSentinelMasterName | string | `""` | name of the Redis Sentinel master |
+| config.redisSentinelUrls | string | `""` | list of sentinel URLs, example host:port,host:port |
 | fullnameOverride | string | `""` |  |
 | global.airgap | string | `"false"` |  |
+| global.ingress.enabled | bool | `false` |  |
 | global.loadbalancerURL | string | `""` |  |
 | image.digest | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.registry | string | `"docker.io"` |  |
 | image.repository | string | `"harness/dashboard-service-signed"` |  |
-| image.tag | string | `"v1.52.12-afe14ef"` |  |
+| image.tag | string | `"v1.52.19"` |  |
 | ingress.className | string | `""` |  |
 | ingress.enabled | bool | `false` |  |
 | ingress.hosts | string | `nil` |  |
 | ingress.tls.enabled | bool | `false` |  |
 | ingress.tls.secretName | string | `nil` |  |
-| lookerSecrets.clientId.key | string | `"LOOKERSDK_CLIENT_ID"` |  |
+| lookerSecrets.clientId.key | string | `"lookerSdkClientId"` |  |
 | lookerSecrets.clientId.name | string | `"harness-secrets"` |  |
-| lookerSecrets.clientSecret.key | string | `"LOOKERSDK_CLIENT_SECRET"` |  |
+| lookerSecrets.clientSecret.key | string | `"lookerSdkClientSecret"` |  |
 | lookerSecrets.clientSecret.name | string | `"harness-secrets"` |  |
-| lookerSecrets.secret.key | string | `"SECRET"` |  |
+| lookerSecrets.secret.key | string | `"lookerEmbedSecret"` |  |
 | lookerSecrets.secret.name | string | `"harness-secrets"` |  |
 | maxSurge | int | `1` |  |
 | maxUnavailable | int | `0` |  |
@@ -76,7 +70,7 @@ A Helm chart for Kubernetes
 | service.port | int | `5000` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` |  |
-| serviceAccount.create | bool | `true` |  |
+| serviceAccount.create | bool | `false` |  |
 | serviceAccount.name | string | `"harness-default"` |  |
 | tolerations | list | `[]` |  |
 
