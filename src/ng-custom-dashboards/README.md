@@ -1,6 +1,6 @@
 # ng-custom-dashboards
 
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.52.10](https://img.shields.io/badge/AppVersion-v1.52.10-informational?style=flat-square)
+![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.52.19](https://img.shields.io/badge/AppVersion-v1.52.19-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -31,6 +31,9 @@ A Helm chart for Kubernetes
 | config.ootbFolderId | string | `"7"` | folder ID of the 'OOTB' folder in looker |
 | config.redisHost | string | `""` | hostname of your redis install |
 | config.redisPort | string | `"6379"` | port of your redis install |
+| config.redisSentinel | string | `"false"` | used to enable Redis Sentinel support |
+| config.redisSentinelMasterName | string | `""` | name of the Redis Sentinel master |
+| config.redisSentinelUrls | string | `""` | list of sentinel URLs, example host:port,host:port |
 | fullnameOverride | string | `""` |  |
 | global.airgap | string | `"false"` |  |
 | global.ingress.enabled | bool | `false` |  |
@@ -39,7 +42,7 @@ A Helm chart for Kubernetes
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.registry | string | `"docker.io"` |  |
 | image.repository | string | `"harness/dashboard-service-signed"` |  |
-| image.tag | string | `"v1.52.12-afe14ef"` |  |
+| image.tag | string | `"v1.52.19"` |  |
 | ingress.className | string | `""` |  |
 | ingress.enabled | bool | `false` |  |
 | ingress.hosts | string | `nil` |  |
