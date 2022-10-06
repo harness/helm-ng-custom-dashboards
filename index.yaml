@@ -3,6 +3,23 @@ entries:
   ng-custom-dashboards:
   - apiVersion: v2
     appVersion: v1.52.19
+    created: "2022-10-06T12:18:14.59514649Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 2.x.x
+    - name: harness-common
+      repository: https://harness.github.io/helm-common
+      version: 1.x.x
+    description: A Helm chart for Kubernetes
+    digest: 7466e8b051539431356a209998c8aec2b6223b6b2583d365180266260fb3f154
+    name: ng-custom-dashboards
+    type: application
+    urls:
+    - https://github.com/harness/helm-ng-custom-dashboards/releases/download/ng-custom-dashboards-0.1.4/ng-custom-dashboards-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: v1.52.19
     created: "2022-09-22T15:37:07.07119626Z"
     dependencies:
     - name: common
@@ -35,4 +52,4 @@ entries:
     urls:
     - https://github.com/harness/helm-ng-custom-dashboards/releases/download/ng-custom-dashboards-0.1.1/ng-custom-dashboards-0.1.1.tgz
     version: 0.1.1
-generated: "2022-09-22T15:37:07.07121566Z"
+generated: "2022-10-06T12:18:14.59515879Z"
