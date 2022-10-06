@@ -30,17 +30,17 @@ config:
   # -- folder ID of the 'OOTB' folder in looker
   ootbFolderId: '7'
   # -- hostname of your redis install
-  redisHost: ''
+  redisHost: 'redis'
   # -- port of your redis install
   redisPort: '6379'
   # -- used to enable Redis Sentinel support
-  redisSentinel: 'false'
+  redisSentinel: 'true'
   # -- list of sentinel URLs, example host:port,host:port
-  redisSentinelUrls: ''
+  redisSentinelUrls: 'redis-sentinel-harness-announce-0.harness:26379,redis-sentinel-harness-announce-1.harness:26379,redis-sentinel-harness-announce-2.harness:26379'
   # -- name of the Redis Sentinel master
-  redisSentinelMasterName: ''
+  redisSentinelMasterName: 'harness-redis'
   # -- if you have configured Looker models with a prefix enter it here
-  modelPrefix: ''
+  modelPrefix: 'QA_'
   # -- looker sdk param
   lookerApiVersion: '4.0'
   # -- looker sdk param
