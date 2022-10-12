@@ -15,7 +15,7 @@ image:
   repository: harness/dashboard-service-signed
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.52.19"
+  tag: "v1.52.24"
   digest: ""
 
 config:
@@ -40,7 +40,7 @@ config:
   # -- name of the Redis Sentinel master
   redisSentinelMasterName: 'harness-redis'
   # -- if you have configured Looker models with a prefix enter it here
-  modelPrefix: 'QA_'
+  modelPrefix: ''
   # -- looker sdk param
   lookerApiVersion: '4.0'
   # -- looker sdk param
