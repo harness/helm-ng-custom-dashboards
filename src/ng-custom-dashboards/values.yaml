@@ -36,7 +36,7 @@ config:
   # -- used to enable Redis Sentinel support
   redisSentinel: 'true'
   # -- list of sentinel URLs, example host:port,host:port
-  redisSentinelUrls: 'redis-sentinel-harness-announce-0.harness:26379,redis-sentinel-harness-announce-1.harness:26379,redis-sentinel-harness-announce-2.harness:26379'
+  redisSentinelUrls: ''
   # -- name of the Redis Sentinel master
   redisSentinelMasterName: 'harness-redis'
   # -- if you have configured Looker models with a prefix enter it here
