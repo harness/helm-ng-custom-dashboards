@@ -6,6 +6,11 @@ global:
   airgap: "false"
   ingress:
     enabled: false
+    className: ""
+    hosts: []
+    tls:
+      enabled: false
+      secretName: ""
 replicaCount: 1
 maxSurge: 1
 maxUnavailable: 0
@@ -24,13 +29,13 @@ config:
   # -- hostname of your looker install
   lookerHost: ''
   # -- port of your looker install
-  lookerPort: '80'
+  lookerPort: '443'
   # -- folder ID of the 'CUSTOMER' folder in looker
   customerFolderId: '6'
   # -- folder ID of the 'OOTB' folder in looker
   ootbFolderId: '7'
   # -- hostname of your redis install
-  redisHost: 'redis'
+  redisHost: 'harness-redis-master'
   # -- port of your redis install
   redisPort: '6379'
   # -- used to enable Redis Sentinel support
@@ -50,25 +55,17 @@ config:
 
 lookerSecrets:
   clientId:
-    name: harness-secrets
-    key: lookerSdkClientId
+    name: harness-looker-secrets
+    key: lookerClientId
   clientSecret:
-    name: harness-secrets
-    key: lookerSdkClientSecret
+    name: harness-looker-secrets
+    key: lookerClientSecret
   secret:
-    name: harness-secrets
+    name: harness-looker-secrets
     key: lookerEmbedSecret
 
 nameOverride: ""
 fullnameOverride: ""
-
-ingress:
-  enabled: false
-  className: ""
-  hosts:
-  tls:
-    enabled: false
-    secretName:
 
 serviceAccount:
   # Specifies whether a service account should be created

@@ -1,6 +1,6 @@
 # ng-custom-dashboards
 
-![Version: 0.1.5](https://img.shields.io/badge/Version-0.1.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.52.24](https://img.shields.io/badge/AppVersion-v1.52.24-informational?style=flat-square)
+![Version: 0.1.7](https://img.shields.io/badge/Version-0.1.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.52.24](https://img.shields.io/badge/AppVersion-v1.52.24-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -23,37 +23,36 @@ A Helm chart for Kubernetes
 | config.customerFolderId | string | `"6"` | folder ID of the 'CUSTOMER' folder in looker |
 | config.lookerApiVersion | string | `"4.0"` | looker sdk param |
 | config.lookerHost | string | `""` | hostname of your looker install |
-| config.lookerPort | string | `"80"` | port of your looker install |
+| config.lookerPort | string | `"443"` | port of your looker install |
 | config.lookerScheme | string | `"https"` | scheme used for your looker install, http or https |
 | config.lookerTimeout | string | `"120"` | looker sdk param |
 | config.lookerVerifySsl | string | `"false"` | looker sdk param |
 | config.modelPrefix | string | `""` | if you have configured Looker models with a prefix enter it here |
 | config.ootbFolderId | string | `"7"` | folder ID of the 'OOTB' folder in looker |
-| config.redisHost | string | `"redis"` | hostname of your redis install |
+| config.redisHost | string | `"harness-redis-master"` | hostname of your redis install |
 | config.redisPort | string | `"6379"` | port of your redis install |
 | config.redisSentinel | string | `"true"` | used to enable Redis Sentinel support |
 | config.redisSentinelMasterName | string | `"harness-redis"` | name of the Redis Sentinel master |
-| config.redisSentinelUrls | string | `"redis-sentinel-harness-announce-0.harness:26379,redis-sentinel-harness-announce-1.harness:26379,redis-sentinel-harness-announce-2.harness:26379"` | list of sentinel URLs, example host:port,host:port |
+| config.redisSentinelUrls | string | `""` | list of sentinel URLs, example host:port,host:port |
 | fullnameOverride | string | `""` |  |
 | global.airgap | string | `"false"` |  |
+| global.ingress.className | string | `""` |  |
 | global.ingress.enabled | bool | `false` |  |
+| global.ingress.hosts | list | `[]` |  |
+| global.ingress.tls.enabled | bool | `false` |  |
+| global.ingress.tls.secretName | string | `""` |  |
 | global.loadbalancerURL | string | `""` |  |
 | image.digest | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.registry | string | `"docker.io"` |  |
 | image.repository | string | `"harness/dashboard-service-signed"` |  |
 | image.tag | string | `"v1.52.24"` |  |
-| ingress.className | string | `""` |  |
-| ingress.enabled | bool | `false` |  |
-| ingress.hosts | string | `nil` |  |
-| ingress.tls.enabled | bool | `false` |  |
-| ingress.tls.secretName | string | `nil` |  |
-| lookerSecrets.clientId.key | string | `"lookerSdkClientId"` |  |
-| lookerSecrets.clientId.name | string | `"harness-secrets"` |  |
-| lookerSecrets.clientSecret.key | string | `"lookerSdkClientSecret"` |  |
-| lookerSecrets.clientSecret.name | string | `"harness-secrets"` |  |
+| lookerSecrets.clientId.key | string | `"lookerClientId"` |  |
+| lookerSecrets.clientId.name | string | `"harness-looker-secrets"` |  |
+| lookerSecrets.clientSecret.key | string | `"lookerClientSecret"` |  |
+| lookerSecrets.clientSecret.name | string | `"harness-looker-secrets"` |  |
 | lookerSecrets.secret.key | string | `"lookerEmbedSecret"` |  |
-| lookerSecrets.secret.name | string | `"harness-secrets"` |  |
+| lookerSecrets.secret.name | string | `"harness-looker-secrets"` |  |
 | maxSurge | int | `1` |  |
 | maxUnavailable | int | `0` |  |
 | nameOverride | string | `""` |  |
