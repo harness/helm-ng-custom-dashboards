@@ -24,5 +24,9 @@ data:
   AUTH_NG_MANAGER_SECRET: 'IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM'
   AUTH_IDENTITY_SERVICE_SECRET: HVSKUYqD4e5Rxu12hFDdCJKGM64sxgEynvdDhaOHaTHhwwn0K4Ttr0uoOxSsEVYNrUU=
   REDIS_SENTINEL: '{{ .Values.config.redisSentinel }}'
+  {{- if .Values.config.redisSentinelUrls }}
   REDIS_SENTINEL_URLS: '{{ .Values.config.redisSentinelUrls }}'
+  {{- else }}
+  REDIS_SENTINEL_URLS: 'redis://redis-sentinel-harness-announce-0.{{  .Release.Namespace }}:26379,redis://redis-sentinel-harness-announce-1.{{ .Release.Namespace }}:26379,redis://redis-sentinel-harness-announce-2.{{ .Release.Namespace }}:26379'
+  {{- end }}
   REDIS_SENTINEL_MASTER_NAME: '{{ .Values.config.redisSentinelMasterName }}'
