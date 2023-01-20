@@ -6,8 +6,20 @@ metadata:
   labels:
     {{- include "app.labels" . | nindent 4 }}
 data:
-  AUTH_CLIENT_ID: CustomDashboards
-  BASE_URL: '{{ .Values.global.loadbalancerURL }}'
+  API_GROUP_ID: '{{.Values.config.apiGroupId}}'
+  AUTH_ACCESS_CONTROL_SECRET: 'IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM'
+  AUTH_CCM_SECRET: 'IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM'
+  AUTH_CG_MANAGER_SECRET: 'IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM'
+  AUTH_CLIENT_ID: 'CustomDashboards'
+  AUTH_IDENTITY_SERVICE_SECRET: HVSKUYqD4e5Rxu12hFDdCJKGM64sxgEynvdDhaOHaTHhwwn0K4Ttr0uoOxSsEVYNrUU=
+  AUTH_NG_MANAGER_SECRET: 'IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM'
+  BASE_URL: '{{ .Values.global.loadbalancerURL }}' # deprecated, remove once CDB-476 is rolled out
+  BASEURL_ACCESS_CONTROL: 'http://access-control.{{.Release.Namespace}}.svc.cluster.local:9006'
+  BASEURL_CCM: 'http://nextgen-ce.{{.Release.Namespace}}.svc.cluster.local:6340'
+  BASEURL_CG_MANAGER: 'http://harness-manager.{{.Release.Namespace}}.svc.cluster.local:9090'
+  BASEURL_NG_MANAGER: 'http://ng-manager.{{.Release.Namespace}}.svc.cluster.local:7090'
+  EMBEDDED_GROUP_ID: '{{.Values.config.embeddedGroupId}}'
+  FOLDER_ID_PUBLIC_EMBED: '{{.Values.config.folderIdPublicEmbed}}'
   HOST: '{{ .Values.config.lookerHost }}'
   LOOKERSDK_API_VERSION: '{{ .Values.config.lookerApiVersion }}'
   LOOKERSDK_TIMEOUT: '{{ .Values.config.lookerTimeout }}'
@@ -18,11 +30,6 @@ data:
   OOTB_FOLDER_ID: '{{ .Values.config.ootbFolderId }}'
   CUSTOMER_FOLDER_ID: '{{ .Values.config.customerFolderId }}'
   MODEL_PREFIX: '{{ .Values.config.modelPrefix }}'
-  AUTH_ACCESS_CONTROL_SECRET: 'IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM'
-  AUTH_CCM_SECRET: 'IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM'
-  AUTH_CG_MANAGER_SECRET: 'IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM'
-  AUTH_NG_MANAGER_SECRET: 'IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM'
-  AUTH_IDENTITY_SERVICE_SECRET: HVSKUYqD4e5Rxu12hFDdCJKGM64sxgEynvdDhaOHaTHhwwn0K4Ttr0uoOxSsEVYNrUU=
   REDIS_SENTINEL: '{{ .Values.config.redisSentinel }}'
   {{- if .Values.config.redisSentinelUrls }}
   REDIS_SENTINEL_URLS: '{{ .Values.config.redisSentinelUrls }}'
